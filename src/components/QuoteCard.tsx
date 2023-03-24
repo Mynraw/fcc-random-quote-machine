@@ -1,12 +1,12 @@
 import { FaTwitterSquare, FaTumblrSquare, FaQuoteLeft } from "react-icons/fa"
 
 const QuoteCard = () => {
-  
+
   return (
+    <section className="bg-orange-500 w-fit rounded-lg">
     <div className="px-14 py-8 flex flex-col gap-y-10">
       <div>
         <div className="flex w-[500px]">
-        
         <FaQuoteLeft className="w-16 h-9" /> <p className="text-3xl inline whitespace-normal pl-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, quasi?</p>
         </div>
         <p className="text-right">- Lorem, ipsum.</p>
@@ -21,6 +21,7 @@ const QuoteCard = () => {
       </div>
       </div>
     </div>
+    </section>
   )
 }
 
