@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { countQuotes, themePalette } from "../redux/quoteSlice";
 import { FaTwitterSquare, FaTumblrSquare, FaQuoteLeft } from "react-icons/fa";
 import { colorPalette } from "../styles/colorPalette";
+import { useEffect } from "react";
+
+const api = "http://type.fit/api/quotes";
 
 const QuoteCard = () => {
   const dispatch = useDispatch();
@@ -11,6 +14,16 @@ const QuoteCard = () => {
     dispatch(themePalette(colorPalette[Math.floor(Math.random() * 10)]));
     dispatch(countQuotes());
   };
+
+  const getQuotes = async () => {
+    const res = await fetch(api);
+    const quotes = await res.json();
+    return quotes;
+  };
+
+  useEffect(() => {
+    getQuotes();
+  }, []);
 
   return (
     <section className="w-fit rounded-lg bg-white">
