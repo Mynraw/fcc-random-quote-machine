@@ -1,35 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-import { themePalette } from "../redux/quoteSlice";
+import { countQuotes, themePalette } from "../redux/quoteSlice";
 import { FaTwitterSquare, FaTumblrSquare, FaQuoteLeft } from "react-icons/fa";
-
-const colorPalette = [
-  "#42032C",
-  "#D36B00",
-  "#4C6793",
-  "#0F3D3E",
-  "#51557E",
-  "#B85252",
-  "#5C527F",
-  "#FFAA4C",
-  "#393E46",
-  "#10684A",
-];
+import { colorPalette } from "../styles/colorPalette";
 
 const QuoteCard = () => {
   const dispatch = useDispatch();
-  const paletteColor = useSelector(themePalette);
+  const palette = useSelector((state: any) => state.card.palette);
 
   const handleClick = () => {
-    dispatch(themePalette(Math.floor(Math.random() * 10)));
-    console.log(paletteColor);
+    dispatch(themePalette(colorPalette[Math.floor(Math.random() * 10)]));
   };
 
   return (
-    <section className="bg-orange-500 w-fit rounded-lg">
-      <div className="px-14 py-8 flex flex-col gap-y-10">
+    <section className="w-fit rounded-lg bg-white">
+      <div
+        className="px-14 py-8 flex flex-col gap-y-10 text-[${palette}] transition-all"
+        style={{
+          color: palette,
+        }}
+      >
         <div>
-          <div className="flex w-[500px]">
-            <FaQuoteLeft className="w-16 h-9" />{" "}
+          <div className="flex w-[500px">
+            <FaQuoteLeft className="w-16 h-9" />
             <p className="text-3xl inline whitespace-normal pl-2">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa,
               quasi?
@@ -46,7 +38,10 @@ const QuoteCard = () => {
             <button
               onClick={handleClick}
               type="button"
-              className="capitalize px-4 py-1.5 bg-white rounded-[4px]"
+              className="capitalize px-4 py-1.5 bg-white rounded-[4px] border-2"
+              style={{
+                borderColor: palette,
+              }}
             >
               new quote
             </button>

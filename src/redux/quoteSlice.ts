@@ -4,7 +4,7 @@ const quoteSlice = createSlice({
   name: "quotes",
   initialState: {
     count: 0,
-    palette: 0,
+    palette: '#42032C',
   },
   reducers: {
     countQuotes: (state) => {
