@@ -9,6 +9,7 @@ const QuoteCard = () => {
 
   const handleClick = () => {
     dispatch(themePalette(colorPalette[Math.floor(Math.random() * 10)]));
+    dispatch(countQuotes());
   };
 
   return (
@@ -38,8 +39,9 @@ const QuoteCard = () => {
             <button
               onClick={handleClick}
               type="button"
-              className="capitalize px-4 py-1.5 bg-white rounded-[4px] border-2"
+              className="capitalize px-4 py-1.5 bg-white rounded-[4px] border-2 shadow-xl text-white hover:opacity-90"
               style={{
+                backgroundColor: palette,
                 borderColor: palette,
               }}
             >
