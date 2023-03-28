@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 const QuoteCounter = () => {
   const quoteCount = useSelector((state: any) => state.card.count);
-  console.log(quoteCount);
 
   return (
     <div className="text-white flex flex-col items-center gap-y-2 mb-5">
