@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { countQuotes, themePalette } from "../redux/quoteSlice";
 import { FaTwitterSquare, FaTumblrSquare, FaQuoteLeft } from "react-icons/fa";
-import { colorPalette } from "../styles/colorPalette";
+import { colorPalette } from "../pages/api/colorPalette";
 
 const api = "http://type.fit/api/quotes";
 
