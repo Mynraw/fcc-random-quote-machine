@@ -5,7 +5,7 @@ import { countQuotes, themePalette } from "../redux/quoteSlice";
 import { FaTwitterSquare, FaTumblrSquare, FaQuoteLeft } from "react-icons/fa";
 import { colorPalette } from "../pages/api/colorPalette";
 
-const api = "http://type.fit/api/quotes";
+const api = "https://type.fit/api/quotes";
 
 const QuoteCard = () => {
   const dispatch = useDispatch();
