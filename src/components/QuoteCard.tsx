@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { countQuotes, themePalette } from "../redux/quoteSlice";
 import { FaTwitterSquare, FaTumblrSquare, FaQuoteLeft } from "react-icons/fa";
+import { TwitterShareButton, TumblrShareButton } from "react-share";
 import { colorPalette } from "../pages/api/colorPalette";
 
 const api = "https://type.fit/api/quotes";
@@ -11,12 +11,16 @@ const QuoteCard = () => {
   const dispatch = useDispatch();
   const palette = useSelector((state: any) => state.card.palette);
   const [randomQuote, setRandomQuote] = useState({ text: "", author: "" });
+  const [shareSocialUrl, setShareSocialUrl] = useState("");
 
   const handleClick = async () => {
     dispatch(themePalette(colorPalette[Math.floor(Math.random() * 10)]));
     dispatch(countQuotes());
 
     getRandomQuote();
+
+    const urlText = `"${randomQuote.text}" ${randomQuote.author}`;
+    setShareSocialUrl(urlText);
   };
 
   const getQuotes = async () => {
@@ -38,6 +42,8 @@ const QuoteCard = () => {
 
     // for init as well
     getRandomQuote();
+
+    setShareSocialUrl(`"${randomQuote.text}" ${randomQuote.author}`);
   }, []);
 
   return (
@@ -61,14 +67,15 @@ const QuoteCard = () => {
         </>
         <div className="flex items-center justify-between">
           <div className="flex">
-            <Link
-              className="twitter-share-button"
-              target={"_blank"}
-              href={"https://twitter.com/intent/tweet?text=Hello%20world"}
-            >
+            <TwitterShareButton url={`${shareSocialUrl}`}>
               <FaTwitterSquare className="w-10 h-10" />
-            </Link>
-            <FaTumblrSquare className="w-10 h-10" />
+            </TwitterShareButton>
+            <TumblrShareButton
+              url="https://www.tumblr.com/widgets/share/tool"
+              caption={`${shareSocialUrl}`}
+            >
+              <FaTumblrSquare className="w-10 h-10" />
+            </TumblrShareButton>
           </div>
           <>
             <button
